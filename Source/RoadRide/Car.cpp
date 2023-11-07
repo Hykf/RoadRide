@@ -21,14 +21,11 @@ ACar::ACar()
 	DeltaSpeed =  FMath::RandRange(1.5f,3.0f);;
 }
 
-
-
 // Called every frame
 void ACar::Tick(float DeltaTime)
 {
 	if(RoadActor)
 	{
-
 		DistanceOnRoad += CurrentSpeed * DeltaTime;
 		FTransform OnRoadTransform = RoadActor->RoadSpline->GetTransformAtDistanceAlongSpline(DistanceOnRoad,ESplineCoordinateSpace::World);
 		FTransform RelTransform;
@@ -62,23 +59,19 @@ void ACar::Tick(float DeltaTime)
 					DeltaV = DeltaV * DeltaTime;
 					CurrentSpeed += DeltaV;
 					CurrentSpeed = FMath::Clamp(CurrentSpeed,0,DesiredSpeed);
-					
-				}else
-				{
+			}else
+			{
 					if(CurrentSpeed<DesiredSpeed)
 					{
 						float DeltaV = (DesiredSpeed / DeltaSpeed) * DeltaTime;
 						CurrentSpeed += DeltaV;
 						CurrentSpeed = FMath::Clamp(CurrentSpeed,0,DesiredSpeed);
-						
 					}
-				}
-			
-				if(DistanceOnRoad>=RoadActor->RoadSpline->GetSplineLength())
-				{
+			}
+			if(DistanceOnRoad>=RoadActor->RoadSpline->GetSplineLength())
+			{
 					this->Destroy();
-				}
-			
+			}
 		}
 	}
 }

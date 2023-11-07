@@ -23,6 +23,7 @@ public:
 	UBoxComponent* BoxCollisionComponent;
 	UPROPERTY()
 	ARoad* RoadActor;
+	
 	UPROPERTY()
 	float CurrentSpeed;
 	UPROPERTY()
@@ -31,9 +32,7 @@ public:
 	float DistanceOnRoad;
 	UPROPERTY()
 	float DeltaSpeed;
-
-public:	
-	// Called every frame
+	
 	virtual void Tick(float DeltaTime) override;
 
 };

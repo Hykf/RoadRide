@@ -23,15 +23,19 @@ public:
 	USplineComponent* RoadSpline;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Spawning")
 	TSubclassOf<ACar> CarBlueprint;
-	UPROPERTY()
+	UPROPERTY(BlueprintReadWrite,EditDefaultsOnly)
+	UStaticMesh* RoadMesh;
+	UPROPERTY(EditDefaultsOnly,BlueprintReadWrite)
+	UMaterialInterface* RoadMaterial;
 	FTimerHandle TimerHandle;
-
+	
 	UFUNCTION()
 	void SpawnCar();
 	UFUNCTION()
 	void StartRandomTimer();
 
-	
+	virtual void OnConstruction(const FTransform& Transform) override;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
