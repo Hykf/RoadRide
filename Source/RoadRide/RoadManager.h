@@ -16,10 +16,7 @@ class ROADRIDE_API ARoadManager : public AActor
 public:	
 	// Sets default values for this actor's properties
 	ARoadManager();
-
-	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Spawning")
-	TSubclassOf<ARoad> RoadBlueprint;
-
+	
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Spawning")
 	TSubclassOf<ACar> CarBlueprint;
 

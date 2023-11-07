@@ -8,6 +8,8 @@
 #include "Engine/World.h"
 #include "Road.generated.h"
 
+class ACar;
+
 UCLASS()
 class ROADRIDE_API ARoad : public AActor
 {
@@ -20,7 +22,14 @@ public:
 	UPROPERTY(VisibleAnywhere,BlueprintReadWrite)
 	USplineComponent* RoadSpline;
 	UPROPERTY(EditAnywhere,BlueprintReadWrite, Category = "Spawning")
-	TSubclassOf<AActor> ActorClassToSpawn;
+	TSubclassOf<ACar> CarBlueprint;
+	UPROPERTY()
+	FTimerHandle TimerHandle;
+
+	UFUNCTION()
+	void SpawnCar();
+	UFUNCTION()
+	void StartRandomTimer();
 
 	
 protected:

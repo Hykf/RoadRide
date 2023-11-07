@@ -12,31 +12,20 @@ ARoadManager::ARoadManager()
 void ARoadManager::BeginPlay()
 {
 	Super::BeginPlay();
-
-	if (GetWorld() && RoadBlueprint)
-	{
-		FTransform SpawnTransform;
-		FActorSpawnParameters SpawnParams;
-		SpawnedRoad = GetWorld()->SpawnActor<ARoad>(RoadBlueprint, SpawnTransform, SpawnParams);
-
-		if (SpawnedRoad)
-		{
-			SpawnCar();
-			
-		}
-	}
+	
+			//SpawnCar();
 }
 
 void ARoadManager::StartRandomTimer()
 {
-	float RandomDelay = FMath::FRandRange(1.0f, 3.0f);
+	float RandomDelay = FMath::FRandRange(2.5f, 5.0f);
 	GetWorldTimerManager().SetTimer(TimerHandle, this, &ARoadManager::SpawnCar, RandomDelay, false);
 }
 
 void ARoadManager::SpawnCar()
 {
 	
-	if ( GetWorld())
+	if ( GetWorld() && SpawnedRoad)
 	{
 		FVector Loc = SpawnedRoad->RoadSpline->GetLocationAtSplinePoint(0,ESplineCoordinateSpace::Local) + FVector(0,0,100);
 		FRotator Rot = GetActorRotation();
